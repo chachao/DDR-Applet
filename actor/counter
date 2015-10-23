@@ -1,0 +1,78 @@
+//imports
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.awt.*;
+
+/**
+ * The Counter class adds one to the variable totalCount 
+ * when the bumpCount() method is called.
+ * referred to http://www.greenfoot.org/doc/howto-1
+ */
+public class Counter extends Actor
+{
+    
+    private static int totalCount = 0;
+    private static int streak = 0;
+    private static int maxStreak = 0;
+    
+    //constructor
+    public Counter(){
+        /**refered to:
+         * http://www.pembinatrails.ca/fortrichmondcollegiate/compsci/greenfoot/greenfootimage/default.htm
+         * for how to set the font in the counter
+         */
+        GreenfootImage scoreBoard = new GreenfootImage(150,50);
+        scoreBoard.setColor(Color.WHITE);
+        scoreBoard.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+        scoreBoard.drawString("Points: "+totalCount, 5, 25);
+        setImage(scoreBoard);
+    }
+    
+    //Increase the total amount displayed on the counter, by the given amount
+    public void bumpCount(int amount){
+        GreenfootImage scoreBoard = getImage();
+        totalCount += amount; //add points to current score
+        scoreBoard.clear();
+        scoreBoard.setColor(Color.WHITE);
+//
+        scoreBoard.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+//
+        scoreBoard.drawString("Points: "+totalCount, 5, 25);
+        if (amount>0)
+        {
+            addToStreak();
+        } else
+        {
+            endStreak();
+        }
+    }
+    
+    //Increase the streak by one
+    public void addToStreak(){
+        streak++;
+    }
+    
+    //set the streak back to zero
+    public void endStreak(){
+        maxStreak=Math.max(maxStreak, streak);
+        streak=0;
+    }
+    
+    //check on the variable streak
+    public int streakStatus()
+    {
+        return streak;
+    }
+    
+    //check on the variable maxStreak
+    public int maxStreakStatus()
+    {
+        return maxStreak;
+    }
+    
+    //check on the variable totalCount
+    public int currentCount()
+    {
+        return totalCount;
+    }
+    
+}
