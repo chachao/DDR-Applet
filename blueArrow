@@ -1,0 +1,29 @@
+//import
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * The BlueArrow class is for the arrows 
+ * that move up the screen on the second path from the left
+ */
+public class BlueArrow extends Arrow{
+
+    private GreenfootImage image1;   
+
+    //constructor
+    public BlueArrow(){
+        image1 = new GreenfootImage("bluearrow.png");
+        image1.scale(85,85);
+        setImage(image1);
+        setRotation(-90);
+    }
+    
+    /**
+     * Send each arrow back to respective x-values when they disappear
+     */
+    //disappear method
+    public void disappear()
+    {
+        super.disappear();
+        this.setLocation(230, 600); //send back to bottom of lane
+    }
+}
