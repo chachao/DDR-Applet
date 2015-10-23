@@ -1,0 +1,17 @@
+//import
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * The ArrowSpace class is for the "ghost" arrow 
+ * which indicates where the moving arrow should be
+ * when the keyboard arrow keys are pressed
+ */
+public class ArrowSpace extends Actor
+{
+
+    //constructor
+    public ArrowSpace(){
+        getImage().scale(100,100);
+    }
+    
+}
