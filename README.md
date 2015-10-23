@@ -1,5 +1,5 @@
 # DDR-Applet
-This applet was based on the game Dance Dance Revolution. It was created as a coding project for fun and to improve coding skills. It was made with Java and is not for profit. 
+This applet was based on the game Dance Dance Revolution. It was created as a coding project for fun and to improve coding skills. It was made with Java and using the Greenfoot platform.
 
 Upon reflection, there are several things that should be changed about this project.
   1) Increase memory space - In order to work, the applet must have predefined songs and images stored inside. 
