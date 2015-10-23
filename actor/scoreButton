@@ -1,0 +1,16 @@
+//import
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * The ScoreButton class gives the option to show the score
+ */
+public class ScoreButton extends Actor
+{
+    private GreenfootImage image1 = new GreenfootImage("scoreButton.png");    
+
+    //constructor
+    public ScoreButton(){
+        image1.scale(192, 46);
+        setImage(image1);
+    }    
+}
