@@ -1,0 +1,69 @@
+//imports
+import greenfoot.*; // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.awt.*; //Contains all of the classes for creating user interfaces and for painting graphics and images
+
+/**
+ * The Menu class displays the song choice and allows the user to select
+ * the song and move into the Stage class to play
+ */
+public class Menu extends World
+{
+    //declaring variables
+    private GreenfootImage image1;
+    private GreenfootSound backgroundSound;    
+
+    private Stage theStage = new Stage();
+    private Cascada cascadaSelection = new Cascada();
+    private Ozone ozoneSelection = new Ozone();
+    private Quit quit = new Quit();
+    
+    //constructor
+    public Menu()
+    {    
+        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+        super(750, 550, 1); 
+        //setting background image
+        image1 = new GreenfootImage("background.jpg");
+        image1.scale(750, 550);
+        setBackground(image1);
+        
+        //background music
+        backgroundSound = new GreenfootSound("beats.mp3");
+        //set the volume of the music
+        backgroundSound.setVolume(50);
+        prepare();
+    }
+    
+    public Stage getStage(){
+        return theStage;
+    }
+    
+    //prepare method
+    private void prepare(){
+        Title title = new Title();
+        addObject(title, 225, 150);        
+        addObject(quit, 550, 450);
+        addObject(cascadaSelection, 550, 250);
+        addObject(ozoneSelection, 550, 350);
+    }
+    
+    public void stopped(){
+        backgroundSound.pause();
+    }
+    
+    //act method
+    public void act(){
+        //play music
+        backgroundSound.play();
+        
+        if(Greenfoot.mouseClicked(cascadaSelection)){
+            Greenfoot.setWorld(new Stage());
+            backgroundSound.stop();
+        } else if(Greenfoot.mouseClicked(ozoneSelection)){
+            Greenfoot.setWorld(new Stage2());
+            backgroundSound.stop();
+        }else if (Greenfoot.mouseClicked(quit)){
+            System.exit(0);
+        }
+}
+}
