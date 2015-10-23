@@ -1,0 +1,672 @@
+/**
+ * Names: Charis Chao and Cynthia Yeung
+ * Date: Thursday, March 7, 2013
+ * Project: dance-dance-revolution
+ * Description: Use the arrow keys to match the arrows travelling up the screen
+ * to when they hit the arrow space.
+ */
+
+//import
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * The Stage class sets the moving background for the game
+ */
+public class Stage extends World
+{
+    //declaring variables
+    //background images
+    private static GreenfootImage image1, image2, image3, image4, image5, image6, image7, image8, image9, image10, image11, image12;
+    private static double number1;
+    
+    //Y value of each blue arrow
+    private static double blue1Y = 550;
+    private static double blue2Y = 550;    
+    private static double blue3Y = 550;
+    private static double blue4Y = 550;
+    private static double blue5Y = 550; 
+    
+    //Y value of each green arrow
+    private static double green1Y = 550;
+    private static double green2Y = 550;    
+    private static double green3Y = 550;
+    private static double green4Y = 550;
+    private static double green5Y = 550; 
+    
+    //Y value of each purple arrow
+    private static double purple1Y = 550;
+    private static double purple2Y = 550;    
+    private static double purple3Y = 550;
+    private static double purple4Y = 550;
+    private static double purple5Y = 550; 
+    
+    //Y value of each red arrow
+    private static double red1Y = 550;
+    private static double red2Y = 550;    
+    private static double red3Y = 550;
+    private static double red4Y = 550;
+    private static double red5Y = 550; 
+    
+    //min value of each arrow
+    private static double blueMin = 550;
+    private static double greenMin = 550;
+    private static double purpleMin = 550;
+    private static double redMin = 550;
+
+    //background sound
+    private static GreenfootSound backgroundSound;
+    private static GreenfootSound audience = new GreenfootSound("audience.mp3");
+    
+    //make arrows
+    private static BlueArrow blue1 = new BlueArrow();
+    private static BlueArrow blue2 = new BlueArrow();
+    private static BlueArrow blue3 = new BlueArrow();
+    private static BlueArrow blue4 = new BlueArrow();
+    private static BlueArrow blue5 = new BlueArrow();
+    private static GreenArrow green1 = new GreenArrow();
+    private static GreenArrow green2 = new GreenArrow();
+    private static GreenArrow green3 = new GreenArrow();
+    private static GreenArrow green4 = new GreenArrow();
+    private static GreenArrow green5 = new GreenArrow();
+    private static PurpleArrow purple1 = new PurpleArrow();
+    private static PurpleArrow purple2 = new PurpleArrow();
+    private static PurpleArrow purple3 = new PurpleArrow();
+    private static PurpleArrow purple4 = new PurpleArrow();
+    private static PurpleArrow purple5 = new PurpleArrow();
+    private static RedArrow red1 = new RedArrow();
+    private static RedArrow red2 = new RedArrow();
+    private static RedArrow red3 = new RedArrow();
+    private static RedArrow red4 = new RedArrow();
+    private static RedArrow red5 = new RedArrow();
+
+    private static Counter theCounter=new Counter();
+    private ScoreBoard theScoreBoard=new ScoreBoard();
+    
+    //counter for switching the background
+    private int counter=0;
+    //timer for sending the arrows
+    private static int timer=0;
+
+    //send to the score stage
+     ScoreButton scoreButton = new ScoreButton();
+     Return returnButton = new Return();
+     
+     //results
+     ScoreResult scoreResult = new ScoreResult();
+     StreakResult streakResult = new StreakResult();
+    
+    //constructor
+    public Stage()
+    {    
+        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+        super(750, 550, 1); 
+        //changing backgrounds
+        /**
+         * CHARIS screenshot all pictures used in background
+         */
+        image1 = new GreenfootImage("Background1.png");
+        image2 = new GreenfootImage("Background2.png");
+        image3 = new GreenfootImage("Background3.png");
+        image4 = new GreenfootImage("Background4.png");
+        image5 = new GreenfootImage("Background5.png");
+        image6 = new GreenfootImage("Background6.png");
+        image7 = new GreenfootImage("Background7.png");
+        image8 = new GreenfootImage("Background6.png");
+        image9 = new GreenfootImage("Background5.png");
+        image10 = new GreenfootImage("Background4.png");
+        image11 = new GreenfootImage("Background3.png");
+        image12 = new GreenfootImage("Background2.png");
+
+        image1.scale(750, 550);
+        image2.scale(750, 550);
+        image3.scale(750, 550);
+        image4.scale(750, 550);
+        image5.scale(750, 550);
+        image6.scale(750, 550);
+        image7.scale(750, 550);
+        image8.scale(750, 550);
+        image9.scale(750, 550);
+        image10.scale(750, 550);
+        image11.scale(750, 550);
+        image12.scale(750, 550);   
+        setBackground(image1);
+        
+        //play cascada song
+        backgroundSound = new GreenfootSound("cascada.mp3");
+        
+        prepare();
+    }
+
+    
+    public Counter getCounter(){
+        return theCounter;
+    }
+
+    //switchImage() animates the background by changing the background images in a set order
+    public void switchImage(){
+        if(getBackground() == image1){
+            setBackground(image2);
+        }else if (getBackground() == image2){
+            setBackground(image3);
+        }else if (getBackground() == image3){
+            setBackground(image4);
+        }else if(getBackground() == image4){
+            setBackground(image5);
+        }else if(getBackground() == image5){
+            setBackground(image6);
+        }else if(getBackground() == image6){
+            setBackground(image7);
+        }else if (getBackground() == image7){
+            setBackground(image8);
+        }else if (getBackground() == image8){
+            setBackground(image9);
+        }else if(getBackground() == image9){
+            setBackground(image10);
+        }else if(getBackground() == image10){
+            setBackground(image11);
+        }else if(getBackground() == image11){
+            setBackground(image12);
+        }else if(getBackground() == image12){
+            setBackground(image1);
+        }
+    }
+
+   public void act(){
+        timer++;
+        if (timer < 6400){
+       //switch the background every 10 acts
+        counter++;
+        if (counter == 10)
+        {
+            switchImage();
+            counter = 0;
+        }
+
+        
+        //set the volume of the music
+        backgroundSound.setVolume(40);
+        if(timer < 6375){
+            //play the music
+            backgroundSound.play();
+        }else if (timer > 6375){
+            backgroundSound.stop();
+        }
+        
+            //send up arrows that correspond to cascada song
+            if (timer > 300 && timer < 1132){
+                if (((timer) % 97) == 0)
+                {
+                    send();
+                }
+            }else if (timer > 1132 && timer < 1900){
+                if(timer % 75 == 0){
+                    send();
+                }
+            }else if((timer > 2000) && (timer < 6000)){
+                if(timer % 29 == 0){
+                    send();
+                }
+            }
+        
+       
+        String key = Greenfoot.getKey();
+        //what to do if arrow keys on keyboard are pressed
+        if((key != null) && (key.equals("left"))){
+            blueY();
+        }
+        if ((key != null) && (key.equals("up"))){
+            greenY();
+        }
+        if((key != null) && (key.equals("down"))){
+            purpleY();
+        }
+        if((key != null) && (key.equals("right"))){
+            redY();
+        }
+    }else if (timer > 6400){
+        addObject(scoreButton, 400, 250);
+        if(Greenfoot.mouseClicked(scoreButton)){
+            backgroundSound.stop();
+            //grade based on totalCount
+            if (theCounter.currentCount()>5400){
+                scoreResult.setImage("ScoreA.png");
+            } else if (theCounter.currentCount()>4000){
+                scoreResult.setImage("ScoreB.png");
+            } else {
+                scoreResult.setImage("ScoreC.png");
+            }
+            addObject(scoreResult, 300, 350);
+            
+            
+            //grade based on streak
+            if (theCounter.maxStreakStatus()>20){
+                streakResult.setImage("StreakA.png");
+            } else if (theCounter.maxStreakStatus()>10){
+                streakResult.setImage("StreakB.png");
+            } else {
+                streakResult.setImage("StreakC.png");
+            }
+            
+            addObject(streakResult, 500, 350);
+            
+            audience.play();
+            
+        }
+    }
+    
+    if(Greenfoot.mouseClicked(returnButton)){
+        backgroundSound.stop();    
+        audience.stop();
+        Greenfoot.setWorld(new Menu());
+    }
+}
+
+ public static void blueY(){
+        if(blue1.onOrOff() == true){
+            blue1Y = blue1.getY();
+        }
+        if (blue2.onOrOff() == true){
+            blue2Y = blue2.getY();
+        }
+        if(blue3.onOrOff() == true){
+            blue3Y = blue3.getY();
+        }
+        if (blue4.onOrOff() == true){
+            blue4Y = blue4.getY();
+        }
+        if (blue5.onOrOff() == true){
+            blue5Y = blue5.getY();
+        }
+
+        blueMin = Math.min(blue1Y, blue2Y);
+        blueMin = Math.min(blueMin, blue3Y);
+        blueMin = Math.min(blueMin, blue4Y);
+        blueMin = Math.min(blueMin, blue5Y);
+
+        if(blueMin == blue1Y){
+            points(blue1);
+            blue1.setStatus(false);
+            blue1.getImage().setTransparency(0);
+            blue1Y = 550;
+        }else if(blueMin == blue2Y){
+            points(blue2);
+            blue2.setStatus(false);
+            blue2.getImage().setTransparency(0);   
+            blue2Y = 550;
+        }else if(blueMin == blue3Y){
+            points(blue3);
+            blue3.setStatus(false);
+            blue3.getImage().setTransparency(0);    
+            blue3Y = 550;
+        }else if(blueMin == blue4Y){
+            points(blue4);
+            blue4.setStatus(false);
+            blue4.getImage().setTransparency(0);   
+            blue4Y = 550;
+        }else if(blueMin == blue5Y){
+            points(blue5);
+            blue5.setStatus(false);
+            blue5.getImage().setTransparency(0);   
+            blue5Y = 550;
+        }
+        
+        blueMin = 550;
+        
+    }
+
+   public static void greenY(){
+        if(green1.onOrOff() == true){
+            green1Y = green1.getY();
+        }
+        if (green2.onOrOff() == true){
+            green2Y = green2.getY();
+        }
+        if(green3.onOrOff() == true){
+            green3Y = green3.getY();
+        }
+        if (green4.onOrOff() == true){
+            green4Y = green4.getY();
+        }
+        if (green5.onOrOff() == true){
+            green5Y = green5.getY();
+        }
+        
+        greenMin = Math.min(green1Y, green2Y);
+        greenMin = Math.min(greenMin, green3Y);
+        greenMin = Math.min(greenMin, green4Y);
+        greenMin = Math.min(greenMin, green5Y);
+        
+        if(greenMin == green1Y){
+            points(green1);
+            green1.setStatus(false);
+            green1.getImage().setTransparency(0);
+            green1Y = 550;
+        }else if(greenMin == green2Y){
+            points(green2);
+            green2.setStatus(false);
+            green2.getImage().setTransparency(0);
+            green2Y = 550;
+        }else if(greenMin == green3Y){
+            points(green3);
+            green3.setStatus(false);
+            green3.getImage().setTransparency(0);
+            green3Y = 550;
+        }else if(greenMin == green4Y){
+            points(green4);
+            green4.setStatus(false);
+            green4.getImage().setTransparency(0);
+            green4Y = 550;
+        }else if(greenMin == green5Y){
+            points(green5);
+            green5.setStatus(false);
+            green5.getImage().setTransparency(0);
+            green5Y = 550;
+        }
+        
+        greenMin = 550;
+    }
+
+     
+    public static void purpleY(){
+        if(purple1.onOrOff() == true){
+            purple1Y = purple1.getY();
+        }
+        if (purple2.onOrOff() == true){
+            purple2Y = purple2.getY();
+        }
+        if(purple3.onOrOff() == true){
+            purple3Y = purple3.getY();
+        }
+        if (purple4.onOrOff() == true){
+            purple4Y = purple4.getY();
+        }
+        if (purple5.onOrOff() == true){
+            purple5Y = purple5.getY();
+        }
+        
+        purpleMin = Math.min(purple1Y, purple2Y);
+        purpleMin = Math.min(purpleMin, purple3Y);
+        purpleMin = Math.min(purpleMin, purple4Y);
+        purpleMin = Math.min(purpleMin, purple5Y);
+        
+        if(purpleMin == purple1Y){
+            points(purple1);
+            purple1.setStatus(false);
+            purple1.getImage().setTransparency(0);
+            purple1Y = 550;
+        }else if(purpleMin == purple2Y){
+            points(purple2);
+            purple2.setStatus(false);
+            purple2.getImage().setTransparency(0);
+            purple2Y = 550;
+        }else if(purpleMin == purple3Y){
+            points(purple3);
+            purple3.setStatus(false);
+            purple3.getImage().setTransparency(0);
+            purple3Y = 550;
+        }else if(purpleMin == purple4Y){
+            points(purple4);
+            purple4.setStatus(false);
+            purple4.getImage().setTransparency(0);
+            purple4Y = 550;
+        }else if(purpleMin == purple5Y){
+            points(purple5);
+            purple5.setStatus(false);
+            purple5.getImage().setTransparency(0);
+            purple5Y = 550;
+        }
+        
+        purpleMin = 550;
+    }
+
+   public static void redY(){
+        if(red1.onOrOff() == true){
+            red1Y = red1.getY();
+        }
+        if (red2.onOrOff() == true){
+            red2Y = red2.getY();
+        }
+        if(red3.onOrOff() == true){
+            red3Y = red3.getY();
+        }
+        if (red4.onOrOff() == true){
+            red4Y = red4.getY();
+        }
+        if (red5.onOrOff() == true){
+            red5Y = red5.getY();
+        }
+        
+        redMin = Math.min(red1Y, red2Y);
+        redMin = Math.min(redMin, red3Y);
+        redMin = Math.min(redMin, red4Y);
+        redMin = Math.min(redMin, red5Y);
+        
+        if(redMin == red1Y){
+            points(red1);
+            red1.setStatus(false);
+            red1.getImage().setTransparency(0);
+            red1Y = 550;
+        }else if(redMin == red2Y){
+            points(red2);
+            red2.setStatus(false);
+            red2.getImage().setTransparency(0);
+            red2Y = 550;
+        }else if(redMin == red3Y){
+            points(red3);
+            red3.setStatus(false);
+            red3.getImage().setTransparency(0);
+            red3Y = 550;
+        }else if(redMin == red4Y){
+            points(red4);
+            red4.setStatus(false);
+            red4.getImage().setTransparency(0);
+            red4Y = 550;
+        }else if(redMin == red5Y){
+            points(red5);
+            red5.setStatus(false);
+            red5.getImage().setTransparency(0);
+            red5Y = 550;
+        }
+        
+        redMin = 550;
+    }
+     
+    //send() sends the arrows up
+    public void send()
+    {
+        number1 =  Greenfoot.getRandomNumber(4);
+        //randomize which arrow appears
+        if (number1 == 0){
+            if (blue1.onOrOff() == false)
+            {
+                blue1.setStatus(true);
+            } else if (blue2.onOrOff() == false)
+            {
+                blue2.setStatus(true);
+            } else if (blue3.onOrOff() == false)
+            {
+                blue3.setStatus(true);
+            }else if (blue4.onOrOff() == false)
+            {
+                blue4.setStatus(true);
+            }else if (blue5.onOrOff() == false)
+            {
+                blue5.setStatus(true);
+            }
+        }else if(number1 == 1){
+            if (green1.onOrOff() == false)
+            {
+                green1.setStatus(true);
+            } else if (green2.onOrOff() == false)
+            {
+                green2.setStatus(true);
+            } else if (green3.onOrOff() == false)
+            {
+                green3.setStatus(true);
+            }else if (green4.onOrOff() == false)
+            {
+                green4.setStatus(true);
+            }else if (green5.onOrOff() == false)
+            {
+                green5.setStatus(true);
+            }
+        }else if(number1 == 2){
+            if (purple1.onOrOff() == false)
+            {
+                purple1.setStatus(true);
+            } else if (purple2.onOrOff() == false)
+            {
+                purple2.setStatus(true);
+            } else if (purple3.onOrOff() == false)
+            {
+                purple3.setStatus(true);
+            }else if (purple4.onOrOff() == false)
+            {
+                purple4.setStatus(true);
+            }else if (purple5.onOrOff() == false)
+            {
+                purple5.setStatus(true);
+            }
+        }else if(number1 == 3){
+            if (red1.onOrOff() == false)
+            {
+                red1.setStatus(true);
+            } else if (red2.onOrOff() == false)
+            {
+                red2.setStatus(true);
+            } else if (red3.onOrOff() == false)
+            {
+                red3.setStatus(true);
+            }else if (red4.onOrOff() == false)
+            {
+                red4.setStatus(true);
+            }else if (red5.onOrOff() == false)
+            {
+                red5.setStatus(true);
+            }
+        }
+    }       
+    
+
+    /**
+     * If the program is paused, pause the music.
+     */
+    public void stopped(){
+        backgroundSound.pause();
+        audience.pause();
+    }
+    
+    /**
+     * Prepare the world for the start of the program. That is: create the initial
+     * objects and add them to the world.
+     * CHARIS started this method
+     * CYNTHIA changed which objects were made when she rearranged the subclasses
+     */
+    private void prepare()
+    {
+        //making arrow spaces
+        ArrowSpace arrowLeftSpace = new ArrowSpace();
+        ArrowSpace arrowRightSpace = new ArrowSpace();
+        ArrowSpace arrowDownSpace = new ArrowSpace();       
+        ArrowSpace arrowUpSpace = new ArrowSpace();
+        
+        //set rotation of arrows
+        arrowLeftSpace.setRotation(-90);
+        arrowRightSpace.setRotation(90);
+        arrowDownSpace.setRotation(180);
+        
+        //add arrow objects
+        addObject(arrowLeftSpace, 230, 106);
+        addObject(arrowRightSpace, 530, 106);
+        addObject(arrowDownSpace, 430, 106);
+        addObject(arrowUpSpace, 330, 106);
+        
+        //making pathways
+        Path leftWay = new Path();
+        addObject(leftWay, 230, 350);
+        Path upWay = new Path();
+        addObject(upWay, 330, 350);
+        Path downWay = new Path();
+        addObject(downWay, 430, 350);
+        Path rightWay = new Path();
+        addObject(rightWay, 530, 350);
+        
+        //add arrows
+        addObject(blue1, 230, 600);
+        blue1.getImage().setTransparency(0);
+        addObject(blue2, 230, 600);
+        blue2.getImage().setTransparency(0);
+        addObject(blue3, 230, 600);
+        blue3.getImage().setTransparency(0);
+        addObject(blue4, 230, 600);
+        blue4.getImage().setTransparency(0);
+        addObject(blue5, 230, 600);
+        blue5.getImage().setTransparency(0);
+        addObject(green1, 330, 600);
+        green1.getImage().setTransparency(0);
+        addObject(green2, 330, 600);
+        green2.getImage().setTransparency(0);
+        addObject(green3, 330, 600);
+        green3.getImage().setTransparency(0);
+        addObject(green4, 330, 600);
+        green4.getImage().setTransparency(0);
+        addObject(green5, 330, 600);
+        green5.getImage().setTransparency(0);
+        addObject(purple1, 430, 600);
+        purple1.getImage().setTransparency(0);
+        addObject(purple2, 430, 600);
+        purple2.getImage().setTransparency(0);
+        addObject(purple3, 430, 600);
+        purple3.getImage().setTransparency(0);
+        addObject(purple4, 430, 600);
+        purple4.getImage().setTransparency(0);
+        addObject(purple5, 430, 600);
+        purple5.getImage().setTransparency(0);
+        addObject(red1, 530, 600);
+        red1.getImage().setTransparency(0);
+        addObject(red2, 530, 600);
+        red2.getImage().setTransparency(0);
+        addObject(red3, 530, 600);
+        red3.getImage().setTransparency(0);
+        addObject(red4, 530, 600);
+        red4.getImage().setTransparency(0);
+        addObject(red5, 530, 600);
+        red5.getImage().setTransparency(0);  
+        addObject(returnButton, 100, 500);
+
+        /**
+         *Displaying the score
+         */
+        addObject(theScoreBoard, 100, 50);
+        addObject(theCounter, 100, 50);
+        
+    }
+    
+     //add points to counter depending on how close arrow is to arrowspace
+    private static void points(Arrow arrow){
+        if ((arrow.getY() >= 100) && (arrow.getY()<=100)){
+            theCounter.bumpCount(50);
+        } else if ((arrow.getY() >= 90) && (arrow.getY()<=110)){
+            theCounter.bumpCount(40);
+        } else if ((arrow.getY() >= 80) && (arrow.getY()<=120)){
+            theCounter.bumpCount(30);
+        } else if ((arrow.getY() >= 70) && (arrow.getY()<=130)){
+            theCounter.bumpCount(20);
+        } else if ((arrow.getY() >= 60) && (arrow.getY()<=140)){
+            theCounter.bumpCount(10);
+        } else if ((arrow.getY() >= 50) && (arrow.getY()<=150)){
+            theCounter.bumpCount(5);
+        } else if ((arrow.getY()>150) && (arrow.getY()<=250)){
+            theCounter.bumpCount(-10);
+        } else if ((arrow.getY()>250) && (arrow.getY()<=350)){
+            theCounter.bumpCount(-20);
+        } else if ((arrow.getY()>350) && (arrow.getY()<=550)){
+            theCounter.bumpCount(-30);
+        }
+        
+    }
+
+    
+
+}
+
