@@ -1,0 +1,26 @@
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * The RedArrow class is for the arrows 
+ * that move up the screen on the second path from the right
+ */
+public class RedArrow extends Arrow
+{
+    private GreenfootImage image1;
+    
+    //constructor
+    public RedArrow(){
+        image1 = new GreenfootImage("redarrow.png");
+        image1.scale(85,85);
+        setImage(image1);
+        setRotation(-90);
+    }
+    
+    //disappear method
+    public void disappear()
+    {
+        super.disappear();
+        this.setLocation(530, 600); //send back to bottom of lane
+    }
+
+}
