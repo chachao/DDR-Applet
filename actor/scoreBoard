@@ -1,0 +1,14 @@
+//import
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+  * The class Scoreboard is an image on will the score will be displayed by the Counter
+ */
+public class ScoreBoard extends Actor
+{
+    //constructor
+    public ScoreBoard(){
+        getImage().scale(120, 80);
+    }
+
+}
