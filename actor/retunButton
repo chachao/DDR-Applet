@@ -1,0 +1,17 @@
+//import
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * The Return class gives the option to return to the main menu
+ */
+public class Return extends Actor
+{
+    private GreenfootImage image1 = new GreenfootImage("return.png");    
+
+    //constructor
+    public Return(){
+        image1.scale(192, 46);
+        setImage(image1);
+    }
+    
+}
