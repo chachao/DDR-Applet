@@ -1,0 +1,17 @@
+//import
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * The Path class is for a path on which the arrows move
+ */
+public class Path extends Actor{
+
+    //constructor
+    public Path(){
+        GreenfootImage image = getImage();
+        image.scale(85, 400);
+        image.setTransparency(120);
+        setImage(image);
+    }    
+  
+}
