@@ -1,0 +1,17 @@
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * The Quit class gives the option to enter exit the program
+ */
+public class Quit extends Actor
+{
+    private GreenfootImage image1 = new GreenfootImage("quit.png");    
+
+    //constructor
+    public Quit(){
+        image1.scale(192, 46);
+        setImage(image1);
+    }
+        
+}
+  
