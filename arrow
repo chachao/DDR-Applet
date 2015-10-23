@@ -1,0 +1,72 @@
+//import
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * The Arrow class is the parent class for the individual arrows
+ */
+public class Arrow extends Actor{   
+
+    //declare variable
+    /**
+    *keep track of which arrow to send up and which arrow to disappear
+     *when a key is pressed on the keyboard
+     */
+    public boolean on = false;
+    
+    //constructor
+    public Arrow(){
+        getImage().setTransparency(0);
+    }
+
+    //act method
+    public void act() 
+    {
+        moveGo();
+    }
+    
+    /**
+     * Make the arrows disappear 
+     * when they finish travelling to the top of the stage
+     */
+    public void moveGo(){
+        if (on == true){
+            getImage().setTransparency(255);
+            move(3);
+            check();
+        } else if (on==false){
+            disappear();
+        }
+    }
+    
+    //check method
+    public void check(){
+        if(this.getY() == 0){
+            disappear();
+        }
+    }
+    
+    //disappear method
+    public void disappear()
+    {
+        if (this.getY() < 75){
+            getImage().setTransparency(0);
+            this.setStatus(false);
+        }
+    }
+    
+    /**
+     * Check the on variable from the stage
+     */
+    public boolean onOrOff()
+    {
+        return on;
+    }
+    
+    /**
+     * Change the on variable from the stage
+     */
+    public void setStatus(boolean status)
+    {
+        on = status;
+    }
+}
