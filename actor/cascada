@@ -1,0 +1,17 @@
+//import
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * The Cascada class gives the option to enter the Cascada song
+ */
+public class Cascada extends Actor
+{
+    private GreenfootImage image1 = new GreenfootImage("cascada.png");    
+
+    //constructor
+    public Cascada(){
+        image1.scale(192, 46);
+        setImage(image1);
+    }
+        
+}
