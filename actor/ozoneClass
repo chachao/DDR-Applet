@@ -1,0 +1,17 @@
+//import
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * The Ozone class gives the option to enter the Ozone song
+ */
+public class Ozone extends Actor
+{
+    private GreenfootImage image1 = new GreenfootImage("ozone.png");    
+
+    //constructor
+    public Ozone(){
+        image1.scale(233, 46);
+        setImage(image1);
+    }
+        
+}
